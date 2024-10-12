@@ -1,7 +1,7 @@
 import React from 'react'
 import Fila from './Fila'
 
-export default function Table({ directores }) {
+export default function Table({ directores, handleEdit }) {
     return (
         <table className="table">
             <thead>
@@ -20,7 +20,8 @@ export default function Table({ directores }) {
                            <Fila
                             key={director._id}
                             index={index}
-                            genero={director}
+                            director={director}
+                            handleEdit={handleEdit}
                            />
                         )
                     )

@@ -10,7 +10,7 @@ export default function Footer() {
                 <li className="nav-item"><a href="#" className="nav-link px-2 text-body-secondary">FAQs</a></li>
                 <li className="nav-item"><a href="#" className="nav-link px-2 text-body-secondary">About</a></li>
             </ul>
-            <p className="text-center text-body-secondary">© {new Date().getFullYear()} Julio Martinez</p>
+            <p className="text-center text-body-secondary">© {new Date().getFullYear()} Jonathan David Guerra Cano</p>
         </footer>
     )
 }

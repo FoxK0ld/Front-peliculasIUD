@@ -37,15 +37,19 @@ export default function NavBar({ title = ''}) {
             Directores
           </NavLink>
           
+          
           <a className="nav-link" href="#">
             Productoras
           </a>
           <a className="nav-link" href="#">
             Tipos
           </a>
-          <a className="nav-link" href="#">
+          <NavLink
+            to='/medias'
+            className='nav-link'
+          >
             Media
-          </a>
+          </NavLink>
         </div>
       </div>
     </div>

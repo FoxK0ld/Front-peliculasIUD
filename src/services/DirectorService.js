@@ -21,7 +21,8 @@ const obtenerDirectores = () => {
 
 const editarDirectorPorID = (director, id) => {
     const data = {
-        nombre : director.nombre
+        nombre : director.nombre,
+        estado : director.estado
     }
     return axiosConfig.put('/directores/'+id, data, {
         headers : headers

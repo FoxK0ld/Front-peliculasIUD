@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { crearDirector, obtenerDirectores} from '../../services/DirectorService'
-import Modal from './Modal'
+import { crearDirector, obtenerDirectores, editarDirectorPorID} from '../../services/DirectorService'
+import Modal from '../Modal'
 import Table from './Table'
 import Loading from './Loading'
 
@@ -9,9 +9,11 @@ export default function Directores() {
   const [directores, setDirectores] = useState([])
   const [cargando, setCargando] = useState(false)
   const [director, setDirector] = useState({
-    nombre: ''
+    _id: null,
+    nombre: '',
+    estado: true
   })
-
+  const [isModalOpen, setModalOpen] = useState(false)
   useEffect(() => {
     listarDirectores()
   }, [])
@@ -31,9 +33,14 @@ export default function Directores() {
   const guardar = async () => {
     setCargando(true)
     try {
+      if (director._id) {
+        await editarDirectorPorID(director, director._id)
+      } else {
       await crearDirector(director)
+      }
       listarDirectores()
       clearDirector()
+      setModalOpen(false);
       setCargando(false)
     } catch (e) {
       console.log(e)
@@ -42,38 +49,83 @@ export default function Directores() {
   }
 
   const handleChange = (e) => {
-   // console.log(e.target)
     setDirector({
       ...director,
       [e.target.name] : e.target.value
     })
   }
 
+  const handleToggleChange = () => {
+    setDirector((prev) => ({
+      ...prev,
+      estado: !prev.estado,
+    }))
+  }
+
   const clearDirector = () => {
     console.log('limpiar')
     setDirector({
-      nombre: ''
+      _id: null,
+      nombre: '',
+      estado: true
     })
   }
 
+  const handleEdit = (directorToEdit) => {
+    setDirector(directorToEdit)
+    setModalOpen(true)
+    
+
+  }
   return (
     <>
       <Modal 
-        director={director}
-        handleChange={handleChange}
-        guardar={guardar}
-        clearDirector={clearDirector}
-      />
-      <h3>Generos</h3>
-      <button onClick={clearDirector} type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Nuevo</button>
-      {
-        cargando ? (
-          <Loading />
-        ) : ''
-      }
+        isOpen={isModalOpen} 
+        title={director._id ? 'Editar Director' : 'Nuevo Director'} 
+        onClose={() => {
+          clearDirector();
+          setModalOpen(false);
+        }} 
+        onSave={guardar}
+      >
+        <div className="mb-3">
+          <label htmlFor="recipient-name" className="col-form-label">Nombre:</label>
+          <input 
+            type="text" 
+            className="form-control" 
+            id="recipient-name"
+            name='nombre'
+            onChange={handleChange}
+            value={director.nombre}
+          />
+        </div>
+        {director._id && (
+          <div className="mb-3 form-check form-switch">
+          <input
+            type="checkbox"
+            className="form-check-input"
+            id="estado"
+            checked={director.estado}
+            onChange={handleToggleChange}
+          />
+          <label className="form-check-label" htmlFor="estado">
+            {director.estado ? 'Activo' : 'Inactivo'}
+          </label>
+        </div>
+    )}
+      </Modal>
+
+      <h3>Directores</h3>
+      <button type="button" className="btn btn-outline-primary" onClick={() => {
+        clearDirector();
+        setModalOpen(true); 
+      }}>Nuevo</button>
+
+      {cargando && <Loading />}
 
       <Table 
         directores={directores}
+        handleEdit={handleEdit}
       />
     </>
   )

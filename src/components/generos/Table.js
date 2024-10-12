@@ -1,7 +1,7 @@
 import React from 'react'
 import Fila from './Fila'
 
-export default function Table({ generos }) {
+export default function Table({ generos, handleEdit }) {
     return (
         <table className="table">
             <thead>
@@ -22,6 +22,7 @@ export default function Table({ generos }) {
                             key={genero._id}
                             index={index}
                             genero={genero}
+                            handleEdit={handleEdit}
                            />
                         )
                     )

@@ -2,12 +2,12 @@ import { Route, Routes } from "react-router-dom"
 import Footer from "../components/common/Footer"
 import NavBar from "../components/common/NavBar"
 import NotFound from "../components/common/NotFound"
-import Media from "../components/medias/Media"
+import Medias from "../components/medias/Medias"
 import Generos from "../components/generos/Generos"
 import Directores from "../components/directores/Directores"
 import Productoras from "../components/productoras/Productoras"
 import Tipos from "../components/tipos/Tipos"
-import GestionMedia from "../components/medias/GestionMedia"
+import Media from "../components/medias/Media"
 
 export default function AppRouter() {
 
@@ -24,7 +24,7 @@ export default function AppRouter() {
                     <Route path="/directores" element={<Directores />} />
                     <Route path="/productoras" element={<Productoras />} />
                     <Route path="/tipos" element={<Tipos />} />
-                    <Route path="/media" element={<GestionMedia />} />
+                    <Route path="/medias" element={<Medias />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </main>
