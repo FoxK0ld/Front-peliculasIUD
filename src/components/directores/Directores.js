@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { crearDirector, obtenerDirectores, editarDirectorPorID} from '../../services/DirectorService'
+import { crearDirector, obtenerDirectores, editarDirectorPorID } from '../../services/DirectorService'
 import Modal from '../Modal'
 import Table from './Table'
 import Loading from './Loading'
@@ -36,7 +36,7 @@ export default function Directores() {
       if (director._id) {
         await editarDirectorPorID(director, director._id)
       } else {
-      await crearDirector(director)
+        await crearDirector(director)
       }
       listarDirectores()
       clearDirector()
@@ -51,7 +51,7 @@ export default function Directores() {
   const handleChange = (e) => {
     setDirector({
       ...director,
-      [e.target.name] : e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
@@ -74,25 +74,25 @@ export default function Directores() {
   const handleEdit = (directorToEdit) => {
     setDirector(directorToEdit)
     setModalOpen(true)
-    
+
 
   }
   return (
     <>
-      <Modal 
-        isOpen={isModalOpen} 
-        title={director._id ? 'Editar Director' : 'Nuevo Director'} 
+      <Modal
+        isOpen={isModalOpen}
+        title={director._id ? 'Editar Director' : 'Nuevo Director'}
         onClose={() => {
           clearDirector();
           setModalOpen(false);
-        }} 
+        }}
         onSave={guardar}
       >
         <div className="mb-3">
           <label htmlFor="recipient-name" className="col-form-label">Nombre:</label>
-          <input 
-            type="text" 
-            className="form-control" 
+          <input
+            type="text"
+            className="form-control"
             id="recipient-name"
             name='nombre'
             onChange={handleChange}
@@ -101,29 +101,29 @@ export default function Directores() {
         </div>
         {director._id && (
           <div className="mb-3 form-check form-switch">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="estado"
-            checked={director.estado}
-            onChange={handleToggleChange}
-          />
-          <label className="form-check-label" htmlFor="estado">
-            {director.estado ? 'Activo' : 'Inactivo'}
-          </label>
-        </div>
-    )}
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id="estado"
+              checked={director.estado}
+              onChange={handleToggleChange}
+            />
+            <label className="form-check-label" htmlFor="estado">
+              {director.estado ? 'Activo' : 'Inactivo'}
+            </label>
+          </div>
+        )}
       </Modal>
 
       <h3>Directores</h3>
       <button type="button" className="btn btn-outline-primary" onClick={() => {
         clearDirector();
-        setModalOpen(true); 
+        setModalOpen(true);
       }}>Nuevo</button>
 
       {cargando && <Loading />}
 
-      <Table 
+      <Table
         directores={directores}
         handleEdit={handleEdit}
       />

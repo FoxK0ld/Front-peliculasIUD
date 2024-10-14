@@ -1,7 +1,7 @@
 import React from 'react'
 import Fila from './Fila'
 
-export default function Table({ directores, handleEdit }) {
+export default function Table({ tipos, handleEdit }) {
     return (
         <div style={{ overflowX: 'auto' }}>
             <table className="table">
@@ -9,19 +9,19 @@ export default function Table({ directores, handleEdit }) {
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Estado</th>
+                        <th scope="col">Descripcion</th>
                         <th scope="col">Creado</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     {
-                        directores.map((director, index) =>
+                        tipos.map((tipo, index) =>
                         (
                             <Fila
-                                key={director._id}
+                                key={tipo._id}
                                 index={index}
-                                director={director}
+                                tipo={tipo}
                                 handleEdit={handleEdit}
                             />
                         )

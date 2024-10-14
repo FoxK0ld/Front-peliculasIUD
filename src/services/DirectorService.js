@@ -1,37 +1,37 @@
 import { axiosConfig } from "../config/axiosConfig";
 
 const headers = {
-    'Content-Type' : 'application/json'
+    'Content-Type': 'application/json'
 }
 
 const crearDirector = (director) => {
     const data = {
-        nombre : director.nombre
+        nombre: director.nombre
     }
     return axiosConfig.post('/directores', data, {
-        headers : headers
+        headers: headers
     })
 }
 
 const obtenerDirectores = () => {
     return axiosConfig.get('/directores', {
-        headers : headers
+        headers: headers
     })
 }
 
 const editarDirectorPorID = (director, id) => {
     const data = {
-        nombre : director.nombre,
-        estado : director.estado
+        nombre: director.nombre,
+        estado: director.estado
     }
-    return axiosConfig.put('/directores/'+id, data, {
-        headers : headers
+    return axiosConfig.put('/directores/' + id, data, {
+        headers: headers
     })
 }
 
 const obtenerDirectorPorID = (id) => {
-    return axiosConfig.get('/directores/'+id, {
-        headers : headers
+    return axiosConfig.get('/directores/' + id, {
+        headers: headers
     })
 }
 

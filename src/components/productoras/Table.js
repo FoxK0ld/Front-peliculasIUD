@@ -1,7 +1,7 @@
 import React from 'react'
 import Fila from './Fila'
 
-export default function Table({ directores, handleEdit }) {
+export default function Table({ productoras, handleEdit }) {
     return (
         <div style={{ overflowX: 'auto' }}>
             <table className="table">
@@ -9,6 +9,8 @@ export default function Table({ directores, handleEdit }) {
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Slogan</th>
                         <th scope="col">Estado</th>
                         <th scope="col">Creado</th>
                         <th scope="col"></th>
@@ -16,12 +18,12 @@ export default function Table({ directores, handleEdit }) {
                 </thead>
                 <tbody>
                     {
-                        directores.map((director, index) =>
+                        productoras.map((productora, index) =>
                         (
                             <Fila
-                                key={director._id}
+                                key={productora._id}
                                 index={index}
-                                director={director}
+                                productora={productora}
                                 handleEdit={handleEdit}
                             />
                         )

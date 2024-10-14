@@ -3,31 +3,33 @@ import Fila from './Fila'
 
 export default function Table({ generos, handleEdit }) {
     return (
-        <table className="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Descripcion</th>
-                    <th scope="col">Estado</th>
-                    <th scope="col">Creado</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    generos.map((genero, index) => 
+        <div style={{ overflowX: 'auto' }}>
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Creado</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        generos.map((genero, index) =>
                         (
-                           <Fila
-                            key={genero._id}
-                            index={index}
-                            genero={genero}
-                            handleEdit={handleEdit}
-                           />
+                            <Fila
+                                key={genero._id}
+                                index={index}
+                                genero={genero}
+                                handleEdit={handleEdit}
+                            />
                         )
-                    )
-                }
-            </tbody>
-        </table>
+                        )
+                    }
+                </tbody>
+            </table>
+        </div>
     )
 }

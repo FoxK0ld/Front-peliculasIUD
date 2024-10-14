@@ -34,12 +34,12 @@ export default function Generos() {
 
   const guardar = async () => {
     setCargando(true)
-    try { 
-      if (genero._id){
-      await editarGeneroPorID (genero, genero._id)
-    } else {
-      await crearGenero(genero)
-    }
+    try {
+      if (genero._id) {
+        await editarGeneroPorID(genero, genero._id)
+      } else {
+        await crearGenero(genero)
+      }
       listarGeneros()
       clearGenero()
       setModalOpen(false);
@@ -53,7 +53,7 @@ export default function Generos() {
   const handleChange = (e) => {
     setGenero({
       ...genero,
-      [e.target.name] : e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
@@ -80,20 +80,20 @@ export default function Generos() {
 
   return (
     <>
-      <Modal 
-        isOpen={isModalOpen} 
-        title={genero._id ? 'Editar Genero' : 'Nuevo Genero'} 
+      <Modal
+        isOpen={isModalOpen}
+        title={genero._id ? 'Editar Genero' : 'Nuevo Genero'}
         onClose={() => {
           clearGenero();
           setModalOpen(false);
-        }} 
+        }}
         onSave={guardar}
       >
         <div className="mb-3">
           <label htmlFor="recipient-name" className="col-form-label">Nombre:</label>
-          <input 
-            type="text" 
-            className="form-control" 
+          <input
+            type="text"
+            className="form-control"
             id="recipient-name"
             name='nombre'
             onChange={handleChange}
@@ -101,44 +101,44 @@ export default function Generos() {
           />
         </div>
         <div className="mb-3">
-                  <label htmlFor="message-text" className="col-form-label">Descripción:</label>
-                  <textarea 
-                    className="form-control" 
-                    id="message-text"
-                    name='descripcion'
-                    onChange={handleChange}
-                    value={genero.descripcion}
-                  ></textarea>
-                </div>
-                
-          {genero._id && (
-          <div className="mb-3 form-check form-switch">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="estado"
-            checked={genero.estado}
-            onChange={handleToggleChange}
-          />
-          <label className="form-check-label" htmlFor="estado">
-            {genero.estado ? 'Activo' : 'Inactivo'}
-          </label>
+          <label htmlFor="message-text" className="col-form-label">Descripción:</label>
+          <textarea
+            className="form-control"
+            id="message-text"
+            name='descripcion'
+            onChange={handleChange}
+            value={genero.descripcion}
+          ></textarea>
         </div>
-    )}
+
+        {genero._id && (
+          <div className="mb-3 form-check form-switch">
+            <input
+              type="checkbox"
+              className="form-check-input"
+              id="estado"
+              checked={genero.estado}
+              onChange={handleToggleChange}
+            />
+            <label className="form-check-label" htmlFor="estado">
+              {genero.estado ? 'Activo' : 'Inactivo'}
+            </label>
+          </div>
+        )}
       </Modal>
 
       <h3>Generos</h3>
       <button type="button" className="btn btn-outline-primary" onClick={() => {
         clearGenero();
-        setModalOpen(true); 
+        setModalOpen(true);
       }}>Nuevo</button>
 
       {cargando && <Loading />}
 
-      <Table 
+      <Table
         generos={generos}
         handleEdit={handleEdit}
       />
     </>
   )
-  }
+}

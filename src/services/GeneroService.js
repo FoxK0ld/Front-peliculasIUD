@@ -1,39 +1,39 @@
 import { axiosConfig } from "../config/axiosConfig";
 
 const headers = {
-    'Content-Type' : 'application/json'
+    'Content-Type': 'application/json'
 }
 
 const crearGenero = (genero) => {
     const data = {
-        nombre : genero.nombre,
-        descripcion : genero.descripcion,
+        nombre: genero.nombre,
+        descripcion: genero.descripcion,
     }
     return axiosConfig.post('/generos', data, {
-        headers : headers
+        headers: headers
     })
 }
 
 const obtenerGeneros = () => {
     return axiosConfig.get('/generos', {
-        headers : headers
+        headers: headers
     })
 }
 
 const editarGeneroPorID = (genero, id) => {
     const data = {
-        nombre : genero.nombre,
-        descripcion : genero.descripcion,
-        estado : genero.estado
+        nombre: genero.nombre,
+        descripcion: genero.descripcion,
+        estado: genero.estado
     }
-    return axiosConfig.put('/generos/'+id, data, {
-        headers : headers
+    return axiosConfig.put('/generos/' + id, data, {
+        headers: headers
     })
 }
 
 const obtenerGeneroPorID = (id) => {
-    return axiosConfig.get('/generos/'+id, {
-        headers : headers
+    return axiosConfig.get('/generos/' + id, {
+        headers: headers
     })
 }
 
